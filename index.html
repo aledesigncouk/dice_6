@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+    <title>Line with scales</title>
+</head>
+
+<style>
+    #chart {
+        height: 400px;
+        width: 800px;
+        margin: 0 auto;
+        background: rgb(0, 0, 125, 0.3);
+        padding: 30px;
+    }
+
+    svg {
+        overflow: visible;
+    }
+    
+    .points{
+        
+    }
+</style>
+
+<body>
+
+    <div id="container">
+        <div id="chart">
+
+        </div>
+    </div>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script>
+        var width = 800,
+            height = 400;
+
+        var data = [{
+            x: 3,
+            y: -2
+        }, {
+            x: 20,
+            y: 34
+        }, {
+            x: 30,
+            y: 25
+        }, {
+            x: 27,
+            y: -33
+        }, {
+            x: 7,
+            y: 16
+        }, {
+            x: 75,
+            y: -3
+        }, {
+            x: 17,
+            y: -33
+        }, {
+            x: 26,
+            y: 15
+        }]
+
+        var xMax = d3.max([d3.max(data, function(d) {
+            return d.x;
+        })]);
+        var yMax = d3.max([d3.max(data, function(d) {
+            return d.y;
+        })]);
+        var yMin = d3.min([d3.min(data, function(d) {
+            return d.y;
+        })]);
+
+        var svg = d3.select("#chart")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        var xscale = d3.scaleLinear()
+            .domain([0, xMax])
+            .range([0, width]);
+
+        var yscale = d3.scaleLinear()
+            .domain([yMax, yMin])
+            .range([0, height]);
+
+        var x_axis = d3.axisBottom()
+            .scale(xscale);
+
+        var y_axis = d3.axisLeft()
+            .scale(yscale);
+
+        svg.append("g")
+            .attr("transform", "translate(0, 0)")
+            .call(y_axis);
+
+        svg.append("g")
+            .attr("transform", "translate(0, " + yscale(0) + ")") // set the xAxis to Y 0 dinamically
+            .call(x_axis)
+
+        // import data
+        svg.selectAll("circle")
+            .attr("class", "points")
+            .data(data)
+            .enter().append("circle")
+            .attr("cx", function(d) {
+                return xscale(d.x);
+            })
+            .attr("cy", function(d) {
+                return yscale(d.y);
+            })
+            .attr("r", 2);
+    </script>
+</body>
+
+</html>
