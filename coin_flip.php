@@ -40,12 +40,6 @@ function grapher($side){
     }
 }
 
-
-    for($i=0; $i<$val.lenght; $i++){
-        echo $val[$i];
-    }
- 
-
 //test
 flip(100);
 // var_dump($graph);
