@@ -18,8 +18,9 @@
         overflow: visible;
     }
     
-    .points{
-        
+    circle{
+        stroke: none;
+        fill: #fff;
     }
 </style>
 
@@ -36,46 +37,43 @@
         var width = 800,
             height = 400;
 
-        var data = [{
-            x: 3,
-            y: -2
-        }, {
-            x: 20,
-            y: 34
-        }, {
-            x: 30,
-            y: 25
-        }, {
-            x: 27,
-            y: -33
-        }, {
-            x: 7,
-            y: 16
-        }, {
-            x: 75,
-            y: -3
-        }, {
-            x: 17,
-            y: -33
-        }, {
-            x: 26,
-            y: 15
-        }]
+                var data = [
+  {
+    "x": 0,
+    "y": 16
+  },
+  {
+    "x": 1,
+    "y": -23
+  },
+  {
+    "x": 2,
+    "y": -34
+  },
+            {
+    "x": 3,
+    "y": 25
+  }
+]
+        
+        
+        var svg = d3.select("#chart")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
 
+        // X axis start from 0 to n flips
         var xMax = d3.max([d3.max(data, function(d) {
             return d.x;
         })]);
+        
+        // Y axis start from lowest toss value to highest 
         var yMax = d3.max([d3.max(data, function(d) {
             return d.y;
         })]);
         var yMin = d3.min([d3.min(data, function(d) {
             return d.y;
         })]);
-
-        var svg = d3.select("#chart")
-            .append("svg")
-            .attr("width", width)
-            .attr("height", height);
 
         var xscale = d3.scaleLinear()
             .domain([0, xMax])
@@ -95,10 +93,11 @@
             .attr("transform", "translate(0, 0)")
             .call(y_axis);
 
+        // X axes need to stick to 0 Y axis point
         svg.append("g")
             .attr("transform", "translate(0, " + yscale(0) + ")") // set the xAxis to Y 0 dinamically
-            .call(x_axis)
-
+            .call(x_axis);
+        
         // import data
         svg.selectAll("circle")
             .attr("class", "points")
@@ -111,6 +110,7 @@
                 return yscale(d.y);
             })
             .attr("r", 2);
+        
     </script>
 </body>
 
