@@ -34,37 +34,19 @@ function grapher($side){
     static $y = 0; // y axis
     
     if($side === 'H'){
-        $graph[$i++] = $y += 1;
+        $y += 1;
+        array_push($graph,'{ "y":'.$y.', "x": '.$i.'}' );
+        $i++;
     }else{
-        $graph[$i++] = $y -= 1;
+        $y -= 1;
+        array_push($graph,'{"y":'.$y.',"x": '.$i.'}' );
+        $i++;
     }
 }
-
-/*
-    for($i=0; $i<$val.lenght; $i++){
-        echo $val[$i];
-    }
- */
 
 //test
 flip(100);
-// var_dump($graph);
-echo '<br>';
-echo json_encode($graph,JSON_PRETTY_PRINT);
-// output($graph);
 
-
-/*
-header('Content-Type: text/csv');
-header('Content-Disposition: attachment; filename="sample.csv"');
-
-
-$fp = fopen('php://output', 'wb');
-foreach ( $graph as $line ) {
-    $val = explode(",", $line);
-    fputcsv($fp, $val);
-}
-fclose($fp);
-*/
+echo json_encode($graph);
 
 ?>
