@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 
 <head>
-    <title>Line with scales</title>
+    <title>4 face dice probability</title>
 </head>
 
 <style>
@@ -10,7 +10,7 @@
         height: 400px;
         width: 800px;
         margin: 0 auto;
-        background: rgb(0, 0, 125, 0.3);
+        background: rgb(125, 125, 125, 0.2);
         padding: 30px;
     }
 
@@ -25,7 +25,7 @@
 
     .line {
         stroke: steelblue;
-        stroke-width: 1;
+        stroke-width: 0.5;
         fill: none;
     }
 </style>
@@ -46,7 +46,7 @@
         var trows = 100;
 
         var data = dataGenerator();
-        
+
         console.log(data);
 
         var svg = d3.select("#chart")
@@ -58,6 +58,9 @@
         var xMax = d3.max([d3.max(data, function(d) {
             return d.x;
         })]);
+        var xMin = d3.min([d3.min(data, function(d) {
+            return d.x;
+        })]);
 
         // Y axis start from lowest toss value to highest 
         var yMax = d3.max([d3.max(data, function(d) {
@@ -66,9 +69,15 @@
         var yMin = d3.min([d3.min(data, function(d) {
             return d.y;
         })]);
+        
+        // checks
+        console.log("xMax: " + xMax);
+        console.log("xMin: " + xMin);
+        console.log("yMax: " + yMax);
+        console.log("yMin: " + yMin);
 
         var xscale = d3.scaleLinear()
-            .domain([0, xMax])
+            .domain([xMin, xMax])
             .range([0, width]);
 
         var yscale = d3.scaleLinear()
@@ -82,7 +91,7 @@
             .scale(yscale);
 
         svg.append("g")
-            .attr("transform", "translate(0, 0)")
+            .attr("transform", "translate(" + xscale(0) + ",0)")
             .call(y_axis);
 
         // X axes need to stick to 0 Y axis point
@@ -120,21 +129,50 @@
         // data generator
 
         function dataGenerator() {
-            var graph = [];
+            var graph = []; // main array
             var i = 0;
             var y = 0;
+            var x = 0;
 
             while (i < 1000) {
-                if (Math.random() < 0.5) {
-                    var point = new Object();
-                    point.x = i;
-                    point.y = y += 1;
-                    graph.push(point);
-                } else {
-                    var point = new Object();
-                    point.x = i;
-                    point.y = y -= 1;
-                    graph.push(point);
+
+                switch (Math.floor(Math.random() * 4)) {
+                    case 0: // 1 y++
+
+                        var point = new Object();
+                        point.x = x;
+                        point.y = y += 1;
+                        graph.push(point);
+
+                        break;
+
+                    case 1: // 2 y--
+
+                        var point = new Object();
+                        point.x = x;
+                        point.y = y -= 1;
+                        graph.push(point);
+
+                        break;
+
+                    case 2: // 3 x--
+
+                        var point = new Object();
+                        point.x = x -= 1;
+                        point.y = y;
+                        graph.push(point);
+
+                        break;
+
+                    case 3: // 4 x++
+
+                        var point = new Object();
+                        point.x = x += 1;
+                        point.y = y;
+                        graph.push(point);
+
+                        break;
+
                 }
                 i++;
             }
