@@ -1,184 +1,24 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
+<html>
 
 <head>
-    <title>4 face dice probability</title>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.js"></script> -->
+    <script src="p5.min.js"></script>
+    <script src="sketch.js"></script>
+    <!-- <script src="char_test.js"></script> -->
+    <style>
+        body{
+            margin: 0;
+            background: #000;
+            color: #fff;
+            text-align: center;
+        }
+    
+    </style>
+    
 </head>
 
-<style>
-    #chart {
-        height: 400px;
-        width: 800px;
-        margin: 0 auto;
-        background: rgb(125, 125, 125, 0.2);
-        padding: 30px;
-    }
-
-    svg {
-        overflow: visible;
-    }
-
-    circle {
-        stroke: none;
-        fill: #fff;
-    }
-
-    .line {
-        stroke: steelblue;
-        stroke-width: 0.5;
-        fill: none;
-    }
-</style>
-
 <body>
-
-    <div id="container">
-        <div id="chart">
-
-        </div>
-    </div>
-
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script>
-        var width = 800,
-            height = 400;
-
-        var trows = 100;
-
-        var data = dataGenerator();
-
-        console.log(data);
-
-        var svg = d3.select("#chart")
-            .append("svg")
-            .attr("width", width)
-            .attr("height", height);
-
-        // X axis start from 0 to n flips
-        var xMax = d3.max([d3.max(data, function(d) {
-            return d.x;
-        })]);
-        var xMin = d3.min([d3.min(data, function(d) {
-            return d.x;
-        })]);
-
-        // Y axis start from lowest toss value to highest 
-        var yMax = d3.max([d3.max(data, function(d) {
-            return d.y;
-        })]);
-        var yMin = d3.min([d3.min(data, function(d) {
-            return d.y;
-        })]);
-        
-        // checks
-        console.log("xMax: " + xMax);
-        console.log("xMin: " + xMin);
-        console.log("yMax: " + yMax);
-        console.log("yMin: " + yMin);
-
-        var xscale = d3.scaleLinear()
-            .domain([xMin, xMax])
-            .range([0, width]);
-
-        var yscale = d3.scaleLinear()
-            .domain([yMax, yMin])
-            .range([0, height]);
-
-        var x_axis = d3.axisBottom()
-            .scale(xscale);
-
-        var y_axis = d3.axisLeft()
-            .scale(yscale);
-
-        svg.append("g")
-            .attr("transform", "translate(" + xscale(0) + ",0)")
-            .call(y_axis);
-
-        // X axes need to stick to 0 Y axis point
-        svg.append("g")
-            .attr("transform", "translate(0, " + yscale(0) + ")") // set the xAxis to Y 0 dinamically
-            .call(x_axis);
-
-        // import data
-        svg.selectAll("circle")
-            .attr("class", "points")
-            .data(data)
-            .enter().append("circle")
-            .attr("cx", function(d) {
-                return xscale(d.x);
-            })
-            .attr("cy", function(d) {
-                return yscale(d.y);
-            })
-            .attr("r", 1);
-
-        var line = d3.line()
-            .x(function(d) {
-                return xscale(d.x);
-            })
-            .y(function(d) {
-                return yscale(d.y);
-            });
-
-        // Add the valueline path.
-        svg.append("path")
-            .datum(data)
-            .attr("class", "line")
-            .attr("d", line);
-
-        // data generator
-
-        function dataGenerator() {
-            var graph = []; // main array
-            var i = 0;
-            var y = 0;
-            var x = 0;
-
-            while (i < 1000) {
-
-                switch (Math.floor(Math.random() * 4)) {
-                    case 0: // 1 y++
-
-                        var point = new Object();
-                        point.x = x;
-                        point.y = y += 1;
-                        graph.push(point);
-
-                        break;
-
-                    case 1: // 2 y--
-
-                        var point = new Object();
-                        point.x = x;
-                        point.y = y -= 1;
-                        graph.push(point);
-
-                        break;
-
-                    case 2: // 3 x--
-
-                        var point = new Object();
-                        point.x = x -= 1;
-                        point.y = y;
-                        graph.push(point);
-
-                        break;
-
-                    case 3: // 4 x++
-
-                        var point = new Object();
-                        point.x = x += 1;
-                        point.y = y;
-                        graph.push(point);
-
-                        break;
-
-                }
-                i++;
-            }
-            return graph;
-        }
-    </script>
+<button onclick="location.reload();">Refresh</button>
 </body>
 
 </html>
