@@ -18,10 +18,10 @@ The outcome of each roll determines the movement of the "walker," with the curre
 #### Key Features:
 **Random Walk Simulation:** The movement follows a random process similar to rolling a 6-sided die, where each roll randomly dictates the direction of movement along the x, y, or z axes.
 **Data Generation:** The code generates a series of random steps, with each step resulting in a change of coordinates (x, y, z) based on one of the six directions.
-**3D Path Visualization: **Using p5.js, the project visualizes the random walk in a 3D space. The path is rendered as a polyline that connects the generated points, offering a clear representation of the trajectory.
-**Interactive 3D Visualization: **The p5.js WEBGL renderer allows the user to rotate and interact with the 3D visualization. The user can adjust the view by moving the mouse to inspect the path from different angles.
+**3D Path Visualization:** Using p5.js, the project visualizes the random walk in a 3D space. The path is rendered as a polyline that connects the generated points, offering a clear representation of the trajectory.
+**Interactive 3D Visualization:** The p5.js WEBGL renderer allows the user to rotate and interact with the 3D visualization. The user can adjust the view by moving the mouse to inspect the path from different angles.
 **Bounding Box & Spheres:** A red bounding box is drawn around the path, and a yellow sphere representing the maximum distance from the origin is rendered, providing a visual cue about the extent of the path.
-**Dynamic Axes: **The X, Y, and Z axes are drawn in different colors to serve as reference lines, aiding the user in understanding the spatial relationships of the trajectory.
+**Dynamic Axes:** The X, Y, and Z axes are drawn in different colors to serve as reference lines, aiding the user in understanding the spatial relationships of the trajectory.
 
 #### Technologies Used:
 **p5.js:** A JavaScript library for creative coding that simplifies the creation of graphics and interactive visualizations, used here to render the 3D scene.
@@ -43,7 +43,7 @@ The outcome of each roll determines the movement of the "walker," with the curre
 
 #### Potential Use Cases:
 **Educational Tool:** Teaching the concept of random processes, random walks, and 3D data visualization in mathematics, physics, or computer science.
-**Simulation Visualization: **Providing insights into the behavior of random systems in 3D space, and how randomness can be represented in a graphical format.
+**Simulation Visualization:** Providing insights into the behavior of random systems in 3D space, and how randomness can be represented in a graphical format.
 **Data Science & Probability:** Analyzing how random data behaves in 3D space and visualizing uncertainty or stochastic processes in a way that's easy to interpret.
 
 #### How to Run:
