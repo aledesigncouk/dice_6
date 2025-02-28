@@ -1,7 +1,7 @@
 # 3D Path Visualization of a Dice Roll Simulation:
 ![dice-6](https://github.com/user-attachments/assets/596c8915-f71f-4a4f-a533-dad6660ce034)
 
-### Project Description
+## Project Description
 This project simulates a random walk in 3D space, inspired by the behavior of a 6-faced die. The simulation randomly chooses one of six possible directions (positive or negative x, y, or z axes) in each step, and tracks the path of the movement over a series of steps. The path is visualized in an interactive 3D environment using p5.js, a powerful JavaScript library for creative coding and 3D graphics.
 
 The simulation represents the random walk as a sequence of points that are plotted in a 3D coordinate system. Each step of the random walk is determined by the outcome of a simulated 6-sided die roll, with the possible moves being:
@@ -15,7 +15,7 @@ The simulation represents the random walk as a sequence of points that are plott
 
 The outcome of each roll determines the movement of the "walker," with the current position updated accordingly. As a result, the path of the walk is a random sequence of movements that form a continuous trajectory across a 3D space.
 
-#### Key Features:
+### Key Features:
 **Random Walk Simulation:** The movement follows a random process similar to rolling a 6-sided die, where each roll randomly dictates the direction of movement along the x, y, or z axes.
 
 **Data Generation:** The code generates a series of random steps, with each step resulting in a change of coordinates (x, y, z) based on one of the six directions.
@@ -28,7 +28,7 @@ The outcome of each roll determines the movement of the "walker," with the curre
 
 **Dynamic Axes:** The X, Y, and Z axes are drawn in different colors to serve as reference lines, aiding the user in understanding the spatial relationships of the trajectory.
 
-#### Technologies Used:
+### Technologies Used:
 **p5.js:** A JavaScript library for creative coding that simplifies the creation of graphics and interactive visualizations, used here to render the 3D scene.
 
 **JavaScript:** The programming language used to implement the simulation logic and generate the random walk.
@@ -37,7 +37,7 @@ The outcome of each roll determines the movement of the "walker," with the curre
 
 **WEBGL:** A web graphics library that allows for rendering 3D content within a browser using the p5.js WEBGL renderer.
 
-####Project Structure:
+### Project Structure:
 
 **Data Generation:** The dataGenerator function simulates the random movement, generating a series of steps along the x, y, or z axes and tracking the corresponding coordinates.
 
@@ -49,14 +49,14 @@ The outcome of each roll determines the movement of the "walker," with the curre
 
 **Objective:** This project aims to demonstrate how to visualize a random walk in 3D space using p5.js while simulating the behavior of a 6-sided die. It helps in understanding random processes and how they can be visualized in an interactive 3D environment.
 
-#### Potential Use Cases:
+### Potential Use Cases:
 **Educational Tool:** Teaching the concept of random processes, random walks, and 3D data visualization in mathematics, physics, or computer science.
 
 **Simulation Visualization:** Providing insights into the behavior of random systems in 3D space, and how randomness can be represented in a graphical format.
 
 **Data Science & Probability:** Analyzing how random data behaves in 3D space and visualizing uncertainty or stochastic processes in a way that's easy to interpret.
 
-#### How to Run:
+### How to Run:
 Download or clone the repository.
 Open the HTML file in a modern web browser.
 The 3D visualization will automatically load and display the simulation of the random walk.
